@@ -1,4 +1,6 @@
 ﻿//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ で生成されたインクルード ファイル。
+// CLITest.rc で使用
 //
 #define IDD_CLITEST_DIALOG              102
 #define IDR_MAINFRAME                   128

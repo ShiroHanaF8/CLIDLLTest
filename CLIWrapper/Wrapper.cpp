@@ -48,4 +48,12 @@ namespace CSWrapper {
 		WPFClass::CSMethod8();
 		//return marshal_as<std::wstring>(asmsM);
 	}
+
+	void Wrapper::GetTime(int& year, int& month, int& day)
+	{
+		auto now = System::DateTime::Now;
+		year = now.Year;
+		month = now.Month;
+		day = now.Day;
+	}
 }
