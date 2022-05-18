@@ -224,7 +224,10 @@ void CCLITestDlg::OnBnClickedButtonCsWrapper6()
 void CCLITestDlg::OnBnClickedButtonCsWrapper7()
 {
 	int year, month, day, hour, minute, second;
+
+	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
 	CSWrapper::Wrapper::GetTime(year, month, day, hour, minute, second);
+	CoUninitialize();
 
 	CString logItem;
 	GetDlgItem(IDC_BUTTON_CS_WRAPPER7)->GetWindowText(logItem);
