@@ -223,15 +223,15 @@ void CCLITestDlg::OnBnClickedButtonCsWrapper6()
 
 void CCLITestDlg::OnBnClickedButtonCsWrapper7()
 {
-	int year, month, day;
-	CSWrapper::Wrapper::GetTime(year, month, day);
+	int year, month, day, hour, minute, second;
+	CSWrapper::Wrapper::GetTime(year, month, day, hour, minute, second);
 
 	CString logItem;
 	GetDlgItem(IDC_BUTTON_CS_WRAPPER7)->GetWindowText(logItem);
 	m_stringLog = m_stringLog + "\r\n" + logItem;
 
-	CTime time(year, month, day, 0, 0, 0);
-	m_stringLog = m_stringLog + "\r\n" + time.Format(_T("%Y-%m-%d"));
+	CTime time(year, month, day, hour, minute, second);
+	m_stringLog = m_stringLog + "\r\n" + time.Format(_T("%Y-%m-%d %H:%M:%S"));
 
 	UpdateData(FALSE);
 }

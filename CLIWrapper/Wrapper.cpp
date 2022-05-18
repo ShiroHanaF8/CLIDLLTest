@@ -52,7 +52,7 @@ namespace CSWrapper {
 		//return marshal_as<std::wstring>(asmsM);
 	}
 
-	void Wrapper::GetTime(int& year, int& month, int& day)
+	void Wrapper::GetTime(int& year, int& month, int& day, int &hour, int& minute, int& second)
 	{
 		try {
 			auto ipAny = gcnew System::Net::IPEndPoint(System::Net::IPAddress::Any, 0);
@@ -70,11 +70,16 @@ namespace CSWrapper {
 				(time_t)rdat[41] * 65536 +
 				(time_t)rdat[42] * 256 +
 				(time_t)rdat[43];
-			localtime_s(&time, &tmsecond);
+			auto dt = gcnew System::DateTime(1900, 1, 1);
+			dt = dt->AddTicks(tmsecond * System::TimeSpan:: TicksPerSecond).ToLocalTime();
 
-			year = 1900 + time.tm_year - 70; // 1970/1/1 and 1900/1/1
-			month = time.tm_mon + 1;
-			day = time.tm_mday;
+			year = dt->Year;
+			month = dt->Month;
+			day = dt->Day;
+
+			hour = dt->Hour;
+			minute = dt->Minute;
+			second = dt->Second;
 		}
 		catch (...)
 		{
@@ -82,6 +87,10 @@ namespace CSWrapper {
 			year = now.Year;
 			month = now.Month;
 			day = now.Day;
+
+			hour = now.Hour;
+			minute = now.Minute;
+			second = now.Second;
 		}
 	}
 }
